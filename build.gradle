@@ -7,7 +7,7 @@ plugins {
 }
 
 version = minecraft_version + '-' + mod_version
-group = 'wayoftime.bloodmagic' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+group = 'slavadukeofcats.bloodmagic' // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 
 base {
     archivesName = mod_id
