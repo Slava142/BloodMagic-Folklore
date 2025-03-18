@@ -18,12 +18,13 @@ public class ItemSigilAir extends ItemSigilBase
 {
 	public ItemSigilAir()
 	{
-		super("air", 50);
+		super("air", 200); //Price changed 50-200
 	}
 
 	@Override
 	public InteractionResultHolder<ItemStack> use(Level world, Player player, InteractionHand hand)
 	{
+		player.getCooldownTracker().setCooldown(ItemSigilAir, cooldown duration 20); //Coolddown Added
 		ItemStack stack = player.getItemInHand(hand);
 		if (stack.getItem() instanceof ISigil.Holding)
 			stack = ((Holding) stack.getItem()).getHeldItem(stack, player);
