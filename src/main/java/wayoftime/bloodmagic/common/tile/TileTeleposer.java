@@ -40,8 +40,8 @@ public class TileTeleposer extends TileInventory implements MenuProvider, Comman
 
 	public static final int FOCUS_SLOT = 0;
 
-	public static final int MAX_UNIT_COST = 1000;
-	public static final int MAX_TOTAL_COST = 10000;
+	public static final int MAX_UNIT_COST = 1000000;
+	public static final int MAX_TOTAL_COST = 10000000;
 
 	public TileTeleposer(BlockEntityType<?> type, BlockPos pos, BlockState state)
 	{
@@ -108,7 +108,7 @@ public class TileTeleposer extends TileInventory implements MenuProvider, Comman
 				return;
 			}
 
-			double transportCost = Math.min(0.5 * Math.sqrt(linkedPos.distSqr(worldPosition)), MAX_UNIT_COST);
+			double transportCost = Math.min(2 * Math.sqrt(linkedPos.distSqr(worldPosition)), MAX_UNIT_COST);
 			if (!linkedWorld.equals(level))
 			{
 				transportCost = MAX_UNIT_COST;
