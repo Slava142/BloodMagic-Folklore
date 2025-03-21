@@ -57,7 +57,7 @@ public class ItemSigilAir extends ItemSigilBase
 			if (!unusable)
 				player.fallDistance = 0;
 
-			player.getCooldowns().addCooldown(this, 20);
+			player.getCooldowns().addCooldown(this, 40);
 		}
 
 		return super.use(world, player, hand);
