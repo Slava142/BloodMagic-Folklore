@@ -109,10 +109,13 @@ public class ItemTeleposerFocus extends ItemBindableBase implements ITeleposerFo
 		{
 			return null;
 		}
-
+	try {
 		String worldKey = stack.getTag().getString(Constants.NBT.WORLD);
 		ResourceKey<Level> registryKey = ResourceKey.create(Registries.DIMENSION, new ResourceLocation(worldKey));
 		return registryKey;
+	}catch(NullPointerException e){
+		return null;
+	}
 	}
 
 	public Level getStoredWorld(ItemStack stack, Level world)
