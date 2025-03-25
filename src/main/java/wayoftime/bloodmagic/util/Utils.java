@@ -46,6 +46,8 @@ import wayoftime.bloodmagic.api.compat.IDemonWillViewer;
 import wayoftime.bloodmagic.common.tile.TileInventory;
 import wayoftime.bloodmagic.util.helper.InventoryHelper;
 import wayoftime.bloodmagic.util.helper.NBTHelper;
+import wayoftime.bloodmagic.impl.BloodMagicAPI;
+
 
 public class Utils
 {
@@ -193,6 +195,9 @@ public class Utils
 
 		BlockState initialState = initialWorld.getBlockState(initialPos);
 		BlockState finalState = finalWorld.getBlockState(finalPos);
+
+		if(BloodMagicAPI.INSTANCE.getBlacklist().getTeleposer().contains(initialState) || BloodMagicAPI.INSTANCE.getBlacklist().getTeleposer().contains(finalState))
+			return false;
 
 		if ((initialState.getBlock().equals(Blocks.AIR) && finalState.getBlock().equals(Blocks.AIR)) || initialState.getBlock() instanceof NetherPortalBlock || finalState.getBlock() instanceof NetherPortalBlock)
 			return false;
