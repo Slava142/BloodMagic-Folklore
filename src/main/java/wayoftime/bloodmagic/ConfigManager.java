@@ -35,14 +35,22 @@ public class ConfigManager
 	public static class CommonConfig
 	{
 		public final ConfigValue<List<? extends String>> wellOfSuffering;
+		public final ConfigValue<List<? extends String>> teleposer;
+
 		public final ForgeConfigSpec.IntValue sacrificialDaggerConversion;
 		public final ConfigValue<List<? extends String>> sacrificialValues;
 		public final ForgeConfigSpec.BooleanValue makeDungeonRitualCreativeOnly;
 
+//		Edit BloodMagic.handleConfigValues to actually capture the new config
 		CommonConfig(ForgeConfigSpec.Builder builder)
 		{
-			builder.comment("Stops the listed entities from being used in the Well of Suffering.", "Use the registry name of the entity. Vanilla entities do not require the modid.").push("Blacklist");
+			builder.comment("Blacklist configuration").push("blacklist");
+
+			builder.comment("Stops the listed entities from being used in the Well of Suffering.", "Use the registry name of the entity. Vanilla entities do not require the modid.");
 			wellOfSuffering = builder.defineList("wellOfSuffering", ImmutableList.of(), obj -> true);
+
+			builder.comment("Stops the listed blocks from being teleported with teleposers", "Use the registry name of the entity. Vanilla blocks do not require the modid.");
+			teleposer = builder.defineList("teleposer", ImmutableList.of(), obj -> true);
 
 			builder.pop();
 
