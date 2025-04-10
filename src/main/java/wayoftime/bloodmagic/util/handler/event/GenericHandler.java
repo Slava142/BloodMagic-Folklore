@@ -35,6 +35,7 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import wayoftime.bloodmagic.BloodMagic;
+import wayoftime.bloodmagic.ConfigManager;
 import wayoftime.bloodmagic.anointment.AnointmentHolder;
 import wayoftime.bloodmagic.common.item.*;
 import wayoftime.bloodmagic.core.AnointmentRegistrar;
@@ -66,9 +67,9 @@ import java.util.UUID;
 @Mod.EventBusSubscriber(modid = BloodMagic.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class GenericHandler
 {
-	private static final int gravityDelay = 15;
-	private static final float gravityInitial = 0.05f;
-	private static final float gravityAcceleration = 0.05f;
+//	private static final int gravityDelay = ConfigManager.COMMON.gravityDelay.get();
+//	private static final double gravityInitial = ConfigManager.COMMON.gravityInitial.get();
+//	private static final double gravityAcceleration = ConfigManager.COMMON.gravityAcceleration.get();
 	private static final Map<UUID, Integer> flightDurationMap = new HashMap<>();
 
 	public static Map<UUID, Double> bounceMap = new HashMap<>();
@@ -632,8 +633,8 @@ public class GenericHandler
 
 				int flightDuration = flightDurationMap.get(player.getUUID());
 
-				if (flightDuration >= gravityDelay && !player.isFallFlying()) {
-					player.setDeltaMovement(player.getDeltaMovement().add(0, -(gravityInitial + ((flightDuration - gravityDelay) * gravityAcceleration)), 0));
+				if (flightDuration >= ConfigManager.COMMON.gravityDelay.get() && !player.isFallFlying()) {
+					player.setDeltaMovement(player.getDeltaMovement().add(0, -(ConfigManager.COMMON.gravityInitial.get() + ((flightDuration - ConfigManager.COMMON.gravityDelay.get()) * ConfigManager.COMMON.gravityAcceleration.get())), 0));
 				}
 			}
 

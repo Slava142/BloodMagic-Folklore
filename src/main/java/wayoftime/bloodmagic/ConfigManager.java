@@ -41,6 +41,10 @@ public class ConfigManager
 		public final ConfigValue<List<? extends String>> sacrificialValues;
 		public final ForgeConfigSpec.BooleanValue makeDungeonRitualCreativeOnly;
 
+		public final ForgeConfigSpec.IntValue gravityDelay;
+		public final ForgeConfigSpec.DoubleValue  gravityInitial;
+		public final ForgeConfigSpec.DoubleValue gravityAcceleration;
+
 //		Edit BloodMagic.handleConfigValues to actually capture the new config
 		CommonConfig(ForgeConfigSpec.Builder builder)
 		{
@@ -63,6 +67,15 @@ public class ConfigManager
 
 			builder.comment("State that the dungeon spawning ritual can only be activated when using a Creative Activation Crystal.", "Used on servers for if you do not trust your players to not destroy other people's bases.");
 			makeDungeonRitualCreativeOnly = builder.define("makeDungeonRitualCreativeOnly", false);
+
+			builder.comment("How many ticks of free movement do the players get before the dungeon master gravity effect starts");
+			gravityDelay = builder.defineInRange("gravityDelay", 15, 0, 10000);
+
+			builder.comment("What is the initial gravity amount as soon as the gravity delay is finished");
+			gravityInitial = builder.defineInRange("gravityInitial", 0.05f, 0, 10000);
+
+			builder.comment("How much is the gravity amount increased by per tick after the gravity delay is finished");
+			gravityAcceleration = builder.defineInRange("gravityAcceleration", 0.05f, 0, 10000);
 
 			builder.pop();
 		}

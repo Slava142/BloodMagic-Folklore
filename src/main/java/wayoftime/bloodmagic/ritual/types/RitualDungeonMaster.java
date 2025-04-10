@@ -28,7 +28,6 @@ public class RitualDungeonMaster extends Ritual
 		super("masterDungeon", 3, 0, "ritual." + BloodMagic.MODID + ".dungeonMaster");
 		addBlockRange(GROUNDING_RANGE, new AreaDescriptor.Rectangle(new BlockPos(-radius, 0, -radius), 2*radius+1, 30, 2*radius+1));
 		setMaximumVolumeAndDistanceOfRange(GROUNDING_RANGE, 0, 1000, 1000);
-		System.out.println(getTranslationKey() + " : " + Component.translatable(getTranslationKey()).getVisualOrderText());
 	}
 
 	@Override
