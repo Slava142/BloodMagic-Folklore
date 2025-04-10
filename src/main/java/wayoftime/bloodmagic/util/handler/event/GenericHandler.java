@@ -35,6 +35,7 @@ import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import wayoftime.bloodmagic.BloodMagic;
+import wayoftime.bloodmagic.ConfigManager;
 import wayoftime.bloodmagic.anointment.AnointmentHolder;
 import wayoftime.bloodmagic.common.item.*;
 import wayoftime.bloodmagic.core.AnointmentRegistrar;
@@ -66,6 +67,11 @@ import java.util.UUID;
 @Mod.EventBusSubscriber(modid = BloodMagic.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class GenericHandler
 {
+//	private static final int gravityDelay = ConfigManager.COMMON.gravityDelay.get();
+//	private static final double gravityInitial = ConfigManager.COMMON.gravityInitial.get();
+//	private static final double gravityAcceleration = ConfigManager.COMMON.gravityAcceleration.get();
+	private static final Map<UUID, Integer> flightDurationMap = new HashMap<>();
+
 	public static Map<UUID, Double> bounceMap = new HashMap<>();
 
 //	@SubscribeEvent
@@ -614,6 +620,21 @@ public class GenericHandler
 					if (player.level().isClientSide)
 						player.getAbilities().setFlyingSpeed(getFlySpeedForFlightLevel(player.getEffect(BloodMagicPotions.FLIGHT.get()).getAmplifier()));
 					player.onUpdateAbilities();
+				}
+			}
+
+			if (player.hasEffect(BloodMagicPotions.DUNGEON_AURA.get())) {
+				if (player.onGround() || player.isCreative() || player.isSpectator()) {
+                    flightDurationMap.remove(player.getUUID());
+					return;
+				}
+				if (flightDurationMap.containsKey(player.getUUID())) flightDurationMap.put(player.getUUID(), flightDurationMap.get(player.getUUID()) + 1);
+				else flightDurationMap.put(player.getUUID(), 1);
+
+				int flightDuration = flightDurationMap.get(player.getUUID());
+
+				if (flightDuration >= ConfigManager.COMMON.gravityDelay.get() && !player.isFallFlying()) {
+					player.setDeltaMovement(player.getDeltaMovement().add(0, -(ConfigManager.COMMON.gravityInitial.get() + ((flightDuration - ConfigManager.COMMON.gravityDelay.get()) * ConfigManager.COMMON.gravityAcceleration.get())), 0));
 				}
 			}
 

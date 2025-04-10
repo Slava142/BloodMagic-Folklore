@@ -32,8 +32,10 @@ public class BloodMagicPotions {
     public static final RegistryObject<MobEffect> HARD_CLOAK = MOB_EFFECTS.register("hard_cloak", () -> new PotionBloodMagic(MobEffectCategory.BENEFICIAL, 0x3C1A8D).addAttributeModifier(Attributes.ARMOR_TOUGHNESS, "BF8B6E3F-3328-4C0A-AA66-3BA6BB6DBEF6", 3, AttributeModifier.Operation.ADDITION));
     public static final RegistryObject<MobEffect> SOFT_FALL = MOB_EFFECTS.register("soft_fall", PotionSoftFall::new);
 
+    public static final RegistryObject<MobEffect> DUNGEON_AURA = MOB_EFFECTS.register("dungeon_aura", () -> new PotionBloodMagic(MobEffectCategory.BENEFICIAL, 0x23DDE1));
 
-	public static MobEffect getEffect(ResourceLocation rl)
+
+    public static MobEffect getEffect(ResourceLocation rl)
 	{
 		return ForgeRegistries.MOB_EFFECTS.getValue(rl);
 	}
