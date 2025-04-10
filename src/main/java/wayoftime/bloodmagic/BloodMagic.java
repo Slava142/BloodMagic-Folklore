@@ -162,6 +162,10 @@ public class BloodMagic {
         for (String value : ConfigManager.COMMON.wellOfSuffering.get()) {
             api.getBlacklist().addWellOfSuffering(new ResourceLocation(value));
         }
+
+        for (String value : ConfigManager.COMMON.teleposer.get()) {
+            api.getBlacklist().addTeleposer(ForgeRegistries.BLOCKS.getValue(new ResourceLocation(value)));
+        }
     }
 
     private void registerRecipes(RegisterEvent event) {
