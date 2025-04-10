@@ -66,6 +66,11 @@ import java.util.UUID;
 @Mod.EventBusSubscriber(modid = BloodMagic.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class GenericHandler
 {
+	private static final int gravityDelay = 15;
+	private static final float gravityInitial = 0.05f;
+	private static final float gravityAcceleration = 0.05f;
+	private static final Map<UUID, Integer> flightDurationMap = new HashMap<>();
+
 	public static Map<UUID, Double> bounceMap = new HashMap<>();
 
 //	@SubscribeEvent
@@ -614,6 +619,21 @@ public class GenericHandler
 					if (player.level().isClientSide)
 						player.getAbilities().setFlyingSpeed(getFlySpeedForFlightLevel(player.getEffect(BloodMagicPotions.FLIGHT.get()).getAmplifier()));
 					player.onUpdateAbilities();
+				}
+			}
+
+			if (player.hasEffect(BloodMagicPotions.DUNGEON_AURA.get())) {
+				if (player.onGround() || player.isCreative() || player.isSpectator()) {
+                    flightDurationMap.remove(player.getUUID());
+					return;
+				}
+				if (flightDurationMap.containsKey(player.getUUID())) flightDurationMap.put(player.getUUID(), flightDurationMap.get(player.getUUID()) + 1);
+				else flightDurationMap.put(player.getUUID(), 1);
+
+				int flightDuration = flightDurationMap.get(player.getUUID());
+
+				if (flightDuration >= gravityDelay && !player.isFallFlying()) {
+					player.setDeltaMovement(player.getDeltaMovement().add(0, -(gravityInitial + ((flightDuration - gravityDelay) * gravityAcceleration)), 0));
 				}
 			}
 

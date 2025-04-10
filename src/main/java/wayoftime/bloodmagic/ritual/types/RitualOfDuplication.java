@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.function.Consumer;
 
-@RitualRegister("ritual_of_duplication")
+//@RitualRegister("ritual_of_duplication")
 public class RitualOfDuplication extends Ritual
 {
 
@@ -107,7 +107,7 @@ public class RitualOfDuplication extends Ritual
 	@Override
 	public void gatherComponents(Consumer<RitualComponent> components)
 	{
-		addCornerRunes(components, -3, -1, EnumRuneType.DUSK);
+		addCornerRunes(components, -3, -2, EnumRuneType.DUSK);
 	}
 
 	@Override

@@ -248,6 +248,8 @@ public class GeneratorLanguage extends LanguageProvider
 		add("ritual.bloodmagic.groundingRitual", "The Sinner's Burden");
 		add("ritual.bloodmagic.craftingRitual", "Rhythm of the Beating Anvil");
 
+		add("ritual.bloodmagic.dungeonMaster", "Ritual of the Dungeon Master");
+
 		add("ritual.bloodmagic.cobblestoneRitual", "Le Vulcanos Frigius");
 		add("ritual.bloodmagic.placerRitual", "Domain of The Filler");
 		add("ritual.bloodmagic.fellingRitual", "Crash of The Timberman");
@@ -723,6 +725,7 @@ public class GeneratorLanguage extends LanguageProvider
 
 		addItem(BloodMagicItems.BASE_RITUAL_DIVINER, "Ritual Diviner");
 		addItem(BloodMagicItems.DUSK_RITUAL_DIVINER, "Ritual Diviner [Dusk]");
+		addItem(BloodMagicItems.DAWN_RITUAL_DIVINER, "Ritual Diviner [Dawn]");
 		addItem(BloodMagicItems.RITUAL_READER, "Ritual Tinkerer");
 
 		addItem(BloodMagicItems.SYNTHETIC_POINT, "Synthetic Upgrade Point");
@@ -958,6 +961,8 @@ public class GeneratorLanguage extends LanguageProvider
 		add("effect.bloodmagic.obsidian_cloak", "Obsidian Cloak");
 		add("effect.bloodmagic.hard_cloak", "Hard Cloak");
 		add("effect.bloodmagic.soft_fall", "Soft Fall");
+
+		add("effect.bloodmagic.dungeon_aura", "Dungeon Aura");
 
 	}
 }

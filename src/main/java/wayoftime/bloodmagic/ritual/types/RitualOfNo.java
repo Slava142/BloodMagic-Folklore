@@ -15,7 +15,7 @@ import java.util.HashMap;
 import java.util.UUID;
 import java.util.function.Consumer;
 
-@RitualRegister("ritual_of_no")
+//@RitualRegister("ritual_of_no")
 public class RitualOfNo extends Ritual
 {
 

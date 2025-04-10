@@ -11,6 +11,7 @@ import net.minecraftforge.fml.util.thread.EffectiveSide;
 import wayoftime.bloodmagic.common.block.BloodMagicBlocks;
 import wayoftime.bloodmagic.common.item.inventory.InventoryHolding;
 import wayoftime.bloodmagic.common.item.sigil.ISigil;
+import wayoftime.bloodmagic.common.item.sigil.ItemSigilAir;
 import wayoftime.bloodmagic.common.item.sigil.ItemSigilHolding;
 
 public class ContainerHolding extends AbstractContainerMenu
@@ -177,7 +178,7 @@ public class ContainerHolding extends AbstractContainerMenu
 		@Override
 		public boolean mayPlace(ItemStack itemStack)
 		{
-			return itemStack.getItem() instanceof ISigil && !(itemStack.getItem() instanceof ItemSigilHolding);
+			return itemStack.getItem() instanceof ISigil && !(itemStack.getItem() instanceof ItemSigilHolding || itemStack.getItem() instanceof ItemSigilAir);
 		}
 	}
 
